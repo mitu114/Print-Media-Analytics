@@ -67,6 +67,17 @@ from cte
 group by city
 order by city;
 
+# Q7 Ad Revenue vs. Circulation ROI
+Which cities had the highest ad revenue per net circulated copy? Is this ratio improving or worsening over time?
+
+select city,sum(ad_revenue),sum(Net_Circulation), round(sum(ad_revenue)/sum(Net_Circulation),2) as ad_revenue_to_net_circulation
+from fact_ad_revenue_cleaned as a
+inner join fact_print_sales1 as b
+on a.edition_id = b.edition_ID
+inner join dim_city as c
+on c.city_id = b.City_id
+group by city;
+
 
 
 
